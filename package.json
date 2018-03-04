@@ -89,5 +89,13 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-flow-comments": "^6.22.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-config-standard-flow": "^1.0.1",
+    "eslint-plugin-babel": "^4.1.2",
+    "flow-babel-webpack-plugin": "^1.1.1",
+    "flow-bin": "^0.66.0"
   }
 }
