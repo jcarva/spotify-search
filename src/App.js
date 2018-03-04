@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react'
+import * as React from 'react'
 import logo from './logo.svg'
 import './App.css'
 
@@ -8,7 +8,7 @@ type Props = {};
 
 type State = {};
 
-class App extends Component<Props, State> {
+class App extends React.Component<Props, State> {
   handleClassClick = (event: Object): void => console.log(event.target.className)
 
   render () {
