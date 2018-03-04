@@ -84,11 +84,6 @@
       "node"
     ]
   },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
-  },
   "devDependencies": {
     "babel-plugin-transform-flow-comments": "^6.22.0",
     "eslint-config-standard": "^11.0.0",
