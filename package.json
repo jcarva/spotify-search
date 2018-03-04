@@ -19,9 +19,7 @@
     "eslint-config-react-app": "^2.1.0",
     "eslint-loader": "1.9.0",
     "eslint-plugin-flowtype": "2.39.1",
-    "eslint-plugin-import": "2.8.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
-    "eslint-plugin-react": "7.4.0",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
@@ -88,7 +86,13 @@
     "babel-plugin-transform-flow-comments": "^6.22.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-config-standard-flow": "^1.0.1",
+    "eslint-config-standard-react": "^6.0.0",
     "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-standard": "^3.0.1",
     "flow-babel-webpack-plugin": "^1.1.1",
     "flow-bin": "^0.66.0"
   }
