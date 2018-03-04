@@ -46,7 +46,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "flow": "flow",
+    "lint": "./node_modules/.bin/eslint --ignore-path .gitignore ."
   },
   "jest": {
     "collectCoverageFrom": [
@@ -81,14 +83,6 @@
       "jsx",
       "node"
     ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "devDependencies": {
     "babel-plugin-transform-flow-comments": "^6.22.0",

@@ -9,9 +9,12 @@ type Props = {};
 type State = {};
 
 class App extends Component<Props, State> {
+
+  handleClassClick = (event: Object): void => console.log(event.target.className)
+
   render() {
     return (
-      <div className="App">
+      <div className="App" onClick={this.handleClassClick}>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to VPlayer</h1>

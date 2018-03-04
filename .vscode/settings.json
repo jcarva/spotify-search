@@ -1,0 +1,7 @@
+{
+    "editor.tabSize": 2,
+    "editor.trimAutoWhitespace": true,
+    "editor.insertSpaces": true,
+    "editor.lineNumbers": "on",
+    "javascript.validate.enable": false
+}
