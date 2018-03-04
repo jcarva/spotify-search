@@ -3,5 +3,6 @@
     "editor.trimAutoWhitespace": true,
     "editor.insertSpaces": true,
     "editor.lineNumbers": "on",
-    "javascript.validate.enable": false
+    "javascript.validate.enable": false,
+    "eslint.enable": true
 }
