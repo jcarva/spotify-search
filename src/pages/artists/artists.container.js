@@ -26,6 +26,7 @@ class Artists extends React.Component<void, State> {
   render () {
     return (
       <div id='artists-page'>
+      Artists Page
         <div>
           Now Playing: { this.state.nowPlaying.name }
         </div>
