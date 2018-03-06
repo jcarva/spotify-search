@@ -1,14 +1,19 @@
 // @flow
 
+// Dependencies
 import * as React from 'react'
-import logo from './logo.svg'
-import './App.css'
 
+// Assets
+import logo from '../../assets/images/logo.svg'
+import './login.scss'
+
+// Interfaces
 type Props = {};
 
 type State = {};
 
-class App extends React.Component<Props, State> {
+// Main Component
+class Login extends React.Component<Props, State> {
   handleClassClick = (event: Object): void => console.log(event.target.className)
 
   render () {
@@ -26,4 +31,4 @@ class App extends React.Component<Props, State> {
   }
 }
 
-export default App
+export default Login
