@@ -95,6 +95,8 @@
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-standard": "^3.0.1",
     "flow-babel-webpack-plugin": "^1.1.1",
-    "flow-bin": "^0.66.0"
+    "flow-bin": "^0.66.0",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.7"
   }
 }
