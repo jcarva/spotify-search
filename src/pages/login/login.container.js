@@ -17,16 +17,28 @@ type Props = {
 
 // Main Component
 class Login extends React.Component<Props, void> {
+  /**
+   * Obtains the token and if it exists set in the Spotify service
+   * @return {Void}
+   */
   componentWillMount = () => {
     const params = this.getHashParams()
     const token = params.access_token
     if (token) spotifyApi.setAccessToken(token)
   }
 
+  /**
+   * Checks if the current is authenticated to redirect to the app features
+   * @return {Void}
+   */
   componentDidMount = () => {
     if (spotifyApi.getAccessToken()) this.props.history.push('/home')
   }
 
+  /**
+   * Obtains parameters from the hash of the URL
+   * @return Object
+   */
   getHashParams = (): Object => {
     let e, hashParams
     e = hashParams = {}
@@ -40,6 +52,11 @@ class Login extends React.Component<Props, void> {
     return hashParams
   }
 
+  /**
+   * Generates a random string containing numbers and letters
+   * @param  {number} length The length of the string
+   * @return {string} The generated string
+   */
   generateRandomString = (length: number): string => {
     let text = ''
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -50,6 +67,10 @@ class Login extends React.Component<Props, void> {
     return text
   }
 
+  /**
+   * Redirects the user to VPlayer's Spotify authentication URL
+   * @return {Void}
+   */
   handleLogin = () => {
     const baseUrl = 'https://accounts.spotify.com/authorize'
     const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID
