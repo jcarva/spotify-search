@@ -28,14 +28,14 @@ class Artists extends React.Component<Props, State> {
   }
 
   /**
-   * Stores a new group of artists in the component's state
+   * Stores a group of artists in the component's state
    * @param  {Array<Object>} artists The group of artists that will be stored
    * @return {Void}
    */
   setArtists = (artists: Array<Object>) => this.setState({artists})
 
   /**
-   * Fetchs the top user artists when the component will mount to update the inital state
+   * Fetchs the top user artists when the component will mount to update the inital component's state
    * @return {Void}
    */
   componentWillMount = () => {

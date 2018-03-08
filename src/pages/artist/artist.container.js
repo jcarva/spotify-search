@@ -48,7 +48,7 @@ class Artist extends React.Component<Props, State> {
   setAlbums= (albums: Array<Object>) => this.setState({albums})
 
   /**
-   * Fetchs the current artists and its albums to update the inital component's state
+   * Fetchs the current artist and its albums to update the inital component's state
    * @return {Void}
    */
   componentWillMount = () => {
