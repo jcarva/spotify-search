@@ -79,7 +79,7 @@ class Artists extends React.Component<Props, State> {
   render () {
     return (
       <div id='artists-page'>
-      Artists Page
+        Artists Page
         <input type='text' ref={(input) => { this.searchInput = input }} />
         <button onClick={this.handleSearchSubmit}>Search</button>
         <button onClick={this.handleResetSearch}>Reset</button>

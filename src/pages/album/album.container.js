@@ -11,6 +11,7 @@ import './album.scss'
 
 // Interfaces
 type Props = {
+  history: Object,
   match: Object
 }
 
@@ -67,7 +68,8 @@ class Album extends React.Component<Props, State> {
   render () {
     return (
       <div id='album-page'>
-      Album Page
+        <button onClick={() => this.props.history.goBack()}>back</button>
+        <p>Album Page</p>
         <div className='album-tile'>
           {this.state.album.name}
         </div>

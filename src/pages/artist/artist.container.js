@@ -68,7 +68,8 @@ class Artist extends React.Component<Props, State> {
   render () {
     return (
       <div id='artist-page'>
-      Artist Page
+        <button onClick={() => this.props.history.goBack()}>back</button>
+        <p>Artist Page</p>
         <div className='artist-tile'>
           {this.state.artist.name}
         </div>
