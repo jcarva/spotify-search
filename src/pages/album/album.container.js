@@ -3,32 +3,84 @@
 // Dependencies
 import * as React from 'react'
 
+// Services
+import spotifyApi from '../../services/spotify'
+
 // Assets
 import './album.scss'
 
 // Interfaces
+type Props = {
+  match: Object
+}
+
 type State = {
-  nowPlaying: {
-    name: string,
-    albumArt: string
-  }
+  album: Object,
+  tracks: Array<Object>
 };
 
 // Main Component
-class Album extends React.Component<void, State> {
-  constructor (context: any) {
+class Album extends React.Component<Props, State> {
+  constructor (props: Props, context: any) {
     super(context)
     this.state = {
-      nowPlaying: { name: 'Not Checked', albumArt: '' }
+      album: {
+        id: 'Loading',
+        name: 'Loading'
+      },
+      tracks: []
     }
+  }
+
+  /**
+   * Stores an album in the component's state
+   * @param  {Object} album The album that will be stored
+   * @return {Void}
+   */
+  setAlbum= (album: Object) => this.setState({album})
+
+  /**
+   * Stores a group of tracks in the component's state
+   * @param  {Array<Object>} tracks The group of tracks that will be stored
+   * @return {Void}
+   */
+  setTracks= (tracks: Array<Object>) => this.setState({tracks})
+
+  /**
+   * Fetchs the current album and its tracks to update the inital component's state
+   * @return {Void}
+   */
+  componentWillMount = () => {
+    spotifyApi.getAlbum(this.props.match.params.id)
+      .then(
+        (data) => this.setAlbum(data),
+        (err) => console.error(err)
+      )
+
+    spotifyApi.getAlbumTracks(this.props.match.params.id)
+      .then(
+        (data) => this.setTracks(data.items),
+        (err) => console.error(err)
+      )
   }
 
   render () {
     return (
       <div id='album-page'>
       Album Page
+        <div className='album-tile'>
+          {this.state.album.name}
+        </div>
         <div>
-          Now Playing: { this.state.nowPlaying.name }
+          {
+            this.state.tracks.map((track) => {
+              return (
+                <div key={track.id} className='track-tile'>
+                  {track.name}
+                </div>
+              )
+            })
+          }
         </div>
       </div>
     )
