@@ -22,7 +22,7 @@ type State = {
 // Main Component
 class Album extends React.Component<Props, State> {
   constructor (props: Props, context: any) {
-    super(context)
+    super(props, context)
     this.state = {
       album: {
         id: 'Loading',
@@ -47,7 +47,7 @@ class Album extends React.Component<Props, State> {
   setTracks= (tracks: Array<Object>) => this.setState({tracks})
 
   /**
-   * Fetchs the current album and its tracks to update the inital component's state
+   * Fetches the current album and its tracks to update the inital component's state
    * @return {Void}
    */
   componentWillMount = () => {

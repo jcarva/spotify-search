@@ -20,8 +20,9 @@ type State = {
 
 // Main Component
 class Artists extends React.Component<Props, State> {
+  searchInput: ?HTMLInputElement
   constructor (props: Props, context: any) {
-    super(context)
+    super(props, context)
     this.state = {
       artists: []
     }
@@ -46,10 +47,26 @@ class Artists extends React.Component<Props, State> {
       )
   }
 
+  /**
+   * Fetches the artists according to the searchInput's value to update the current component's state
+   * @return {Void}
+   */
+  handleSearchSubmit = () => {
+    if (!(this.searchInput && this.searchInput.value !== '')) return
+
+    spotifyApi.searchArtists(this.searchInput.value)
+      .then(
+        (data) => this.setArtists(data.artists.items),
+        (err) => console.error(err)
+      )
+  }
+
   render () {
     return (
       <div id='artists-page'>
       Artists Page
+        <input type='text' ref={(input) => { this.searchInput = input }} />
+        <button onClick={this.handleSearchSubmit}>Search</button>
         <div>
           {
             this.state.artists.map((artist) => {
