@@ -36,10 +36,16 @@ class Artists extends React.Component<Props, State> {
   setArtists = (artists: Array<Object>) => this.setState({artists})
 
   /**
-   * Fetchs the top user artists when the component will mount to update the inital component's state
+   * Updates the inital component's state
    * @return {Void}
    */
-  componentWillMount = () => {
+  componentWillMount = () => this.getMyTopArtists()
+
+  /**
+   * Fetchs the top user artists
+   * @return {Void}
+   */
+  getMyTopArtists = () => {
     spotifyApi.getMyTopArtists()
       .then(
         (data) => this.setArtists(data.items),
@@ -61,12 +67,22 @@ class Artists extends React.Component<Props, State> {
       )
   }
 
+  /**
+   * Updates the current component's state according to the top user artists
+   * @return {Void}
+   */
+  handleResetSearch = () => {
+    this.getMyTopArtists()
+    if (this.searchInput && this.searchInput.value) this.searchInput.value = ''
+  }
+
   render () {
     return (
       <div id='artists-page'>
       Artists Page
         <input type='text' ref={(input) => { this.searchInput = input }} />
         <button onClick={this.handleSearchSubmit}>Search</button>
+        <button onClick={this.handleResetSearch}>Reset</button>
         <div>
           {
             this.state.artists.map((artist) => {
