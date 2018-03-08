@@ -28,7 +28,7 @@ class Login extends React.Component<Props, void> {
   }
 
   /**
-   * Checks if the current is authenticated to redirect to the app features
+   * Checks if the current user is authenticated to redirect to the app features
    * @return {Void}
    */
   componentDidMount = () => {
@@ -63,7 +63,6 @@ class Login extends React.Component<Props, void> {
     for (var i = 0; i < length; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length))
     }
-    console.log('window.location.href: ', window.location)
     return text
   }
 

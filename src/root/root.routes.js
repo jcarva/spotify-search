@@ -14,9 +14,25 @@ import Artist from '../pages/artist/artist.container'
 import Album from '../pages/album/album.container'
 
 // Private Route
-const PrivateRoute = (props) => spotifyApi.getAccessToken()
+const PrivateRoute = (props: Object) => spotifyApi.getAccessToken()
   ? <Route {...props} />
   : <Redirect to='/login' />
+
+// Artists Route
+const ArtistsRoute = ({match}: Object) => (
+  <Switch>
+    <PrivateRoute exact path={`${match.url}/:id`} component={(Artist)} />
+    <PrivateRoute path={'/'} component={(Artists)} />
+  </Switch>
+)
+
+// Artists Route
+const AlbunsRoute = ({match}: Object) => (
+  <Switch>
+    <PrivateRoute exact path={`${match.url}/:id`} component={(Album)} />
+    <Redirect to='/artists' />
+  </Switch>
+)
 
 // Main Component
 export default () => (
@@ -27,9 +43,8 @@ export default () => (
         <Redirect exact from='/' to='/login' />
         <Route path='/login' component={Login} />
         <PrivateRoute path='/home' component={Artists} />
-        <PrivateRoute path='/artists' component={Artists} />
-        <PrivateRoute path='/artist' component={Artist} />
-        <PrivateRoute path='/album' component={Album} />
+        <Route path='/artists' component={ArtistsRoute} />
+        <Route path='/albums' component={AlbunsRoute} />
         <Redirect to='/home' />
       </Switch>
     </Router>
