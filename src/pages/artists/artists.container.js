@@ -1,10 +1,13 @@
-// @flow
+/* @flow */
 
 // Dependencies
 import * as React from 'react'
 
 // Services
 import spotifyApi from '../../services/spotify'
+
+// Components
+import SearchField from '../../containers/SearchField/SearchField.container'
 
 // Assets
 import './artists.scss'
@@ -33,19 +36,19 @@ class Artists extends React.Component<Props, State> {
    * @param  {Array<Object>} artists The group of artists that will be stored
    * @return {Void}
    */
-  setArtists = (artists: Array<Object>) => this.setState({artists})
+  setArtists = (artists: Array<Object>): void => this.setState({artists})
 
   /**
    * Updates the inital component's state
    * @return {Void}
    */
-  componentWillMount = () => this.getMyTopArtists()
+  componentWillMount = (): void => this.getMyTopArtists()
 
   /**
    * Fetchs the top user artists
    * @return {Void}
    */
-  getMyTopArtists = () => {
+  getMyTopArtists = (): void => {
     spotifyApi.getMyTopArtists()
       .then(
         (data) => this.setArtists(data.items),
@@ -57,32 +60,21 @@ class Artists extends React.Component<Props, State> {
    * Fetches the artists according to the searchInput's value to update the current component's state
    * @return {Void}
    */
-  handleSearchSubmit = () => {
-    if (!(this.searchInput && this.searchInput.value !== '')) return
-
-    spotifyApi.searchArtists(this.searchInput.value)
-      .then(
-        (data) => this.setArtists(data.artists.items),
-        (err) => console.error(err)
-      )
-  }
-
-  /**
-   * Updates the current component's state according to the top user artists
-   * @return {Void}
-   */
-  handleResetSearch = () => {
-    this.getMyTopArtists()
-    if (this.searchInput && this.searchInput.value) this.searchInput.value = ''
+  handleSearchSubmit = (input: string): void => {
+    input
+      ? spotifyApi.searchArtists(input)
+        .then(
+          (data) => this.setArtists(data.artists.items),
+          (err) => console.error(err)
+        )
+      : this.getMyTopArtists()
   }
 
   render () {
     return (
       <div id='artists-page'>
         Artists Page
-        <input type='text' ref={(input) => { this.searchInput = input }} />
-        <button onClick={this.handleSearchSubmit}>Search</button>
-        <button onClick={this.handleResetSearch}>Reset</button>
+        <SearchField dispatch={this.handleSearchSubmit} />
         <div>
           {
             this.state.artists.map((artist) => {
