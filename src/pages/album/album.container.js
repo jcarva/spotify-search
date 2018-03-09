@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 
 // Dependencies
 import * as React from 'react'
@@ -11,6 +11,7 @@ import './album.scss'
 
 // Interfaces
 type Props = {
+  history: Object,
   match: Object
 }
 
@@ -22,7 +23,7 @@ type State = {
 // Main Component
 class Album extends React.Component<Props, State> {
   constructor (props: Props, context: any) {
-    super(context)
+    super(props, context)
     this.state = {
       album: {
         id: 'Loading',
@@ -37,20 +38,20 @@ class Album extends React.Component<Props, State> {
    * @param  {Object} album The album that will be stored
    * @return {Void}
    */
-  setAlbum= (album: Object) => this.setState({album})
+  setAlbum= (album: Object): void => this.setState({album})
 
   /**
    * Stores a group of tracks in the component's state
    * @param  {Array<Object>} tracks The group of tracks that will be stored
    * @return {Void}
    */
-  setTracks= (tracks: Array<Object>) => this.setState({tracks})
+  setTracks= (tracks: Array<Object>): void => this.setState({tracks})
 
   /**
-   * Fetchs the current album and its tracks to update the inital component's state
+   * Fetches the current album and its tracks to update the inital component's state
    * @return {Void}
    */
-  componentWillMount = () => {
+  componentWillMount = (): void => {
     spotifyApi.getAlbum(this.props.match.params.id)
       .then(
         (data) => this.setAlbum(data),
@@ -67,7 +68,8 @@ class Album extends React.Component<Props, State> {
   render () {
     return (
       <div id='album-page'>
-      Album Page
+        <button onClick={() => this.props.history.goBack()}>back</button>
+        <p>Album Page</p>
         <div className='album-tile'>
           {this.state.album.name}
         </div>

@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 
 // Dependencies
 import * as React from 'react'
@@ -23,7 +23,7 @@ type State = {
 // Main Component
 class Artist extends React.Component<Props, State> {
   constructor (props: Props, context: any) {
-    super(context)
+    super(props, context)
     this.state = {
       artist: {
         id: 'Loading',
@@ -38,20 +38,20 @@ class Artist extends React.Component<Props, State> {
    * @param  {Object} artist The artist that will be stored
    * @return {Void}
    */
-  setArtist = (artist: Object) => this.setState({artist})
+  setArtist = (artist: Object): void => this.setState({artist})
 
   /**
    * Stores a group of albums in the component's state
    * @param  {Array<Object>} albums The group of albums that will be stored
    * @return {Void}
    */
-  setAlbums= (albums: Array<Object>) => this.setState({albums})
+  setAlbums= (albums: Array<Object>): void => this.setState({albums})
 
   /**
-   * Fetchs the current artist and its albums to update the inital component's state
+   * Fetches the current artist and its albums to update the inital component's state
    * @return {Void}
    */
-  componentWillMount = () => {
+  componentWillMount = (): void => {
     spotifyApi.getArtist(this.props.match.params.id)
       .then(
         (data) => this.setArtist(data),
@@ -68,7 +68,8 @@ class Artist extends React.Component<Props, State> {
   render () {
     return (
       <div id='artist-page'>
-      Artist Page
+        <button onClick={() => this.props.history.goBack()}>back</button>
+        <p>Artist Page</p>
         <div className='artist-tile'>
           {this.state.artist.name}
         </div>

@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 
 // Dependencies
 import * as React from 'react'

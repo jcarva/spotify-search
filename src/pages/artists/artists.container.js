@@ -1,10 +1,13 @@
-// @flow
+/* @flow */
 
 // Dependencies
 import * as React from 'react'
 
 // Services
 import spotifyApi from '../../services/spotify'
+
+// Components
+import SearchField from '../../containers/SearchField/SearchField.container'
 
 // Assets
 import './artists.scss'
@@ -20,8 +23,9 @@ type State = {
 
 // Main Component
 class Artists extends React.Component<Props, State> {
+  searchInput: ?HTMLInputElement
   constructor (props: Props, context: any) {
-    super(context)
+    super(props, context)
     this.state = {
       artists: []
     }
@@ -32,13 +36,19 @@ class Artists extends React.Component<Props, State> {
    * @param  {Array<Object>} artists The group of artists that will be stored
    * @return {Void}
    */
-  setArtists = (artists: Array<Object>) => this.setState({artists})
+  setArtists = (artists: Array<Object>): void => this.setState({artists})
 
   /**
-   * Fetchs the top user artists when the component will mount to update the inital component's state
+   * Updates the inital component's state
    * @return {Void}
    */
-  componentWillMount = () => {
+  componentWillMount = (): void => this.getMyTopArtists()
+
+  /**
+   * Fetchs the top user artists
+   * @return {Void}
+   */
+  getMyTopArtists = (): void => {
     spotifyApi.getMyTopArtists()
       .then(
         (data) => this.setArtists(data.items),
@@ -46,10 +56,25 @@ class Artists extends React.Component<Props, State> {
       )
   }
 
+  /**
+   * Fetches the artists according to the searchInput's value to update the current component's state
+   * @return {Void}
+   */
+  handleSearchSubmit = (input: string): void => {
+    input
+      ? spotifyApi.searchArtists(input)
+        .then(
+          (data) => this.setArtists(data.artists.items),
+          (err) => console.error(err)
+        )
+      : this.getMyTopArtists()
+  }
+
   render () {
     return (
       <div id='artists-page'>
-      Artists Page
+        Artists Page
+        <SearchField dispatch={this.handleSearchSubmit} />
         <div>
           {
             this.state.artists.map((artist) => {
