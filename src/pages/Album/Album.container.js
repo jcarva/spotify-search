@@ -4,10 +4,10 @@
 import * as React from 'react'
 
 // Services
-import spotifyApi from '../../services/spotify'
+import spotifyApi from 'services/spotify'
 
 // Assets
-import './album.scss'
+import './Album.scss'
 
 // Interfaces
 type Props = {

@@ -4,13 +4,13 @@
 import * as React from 'react'
 
 // Services
-import spotifyApi from '../../services/spotify'
+import spotifyApi from 'services/spotify'
 
 // Components
-import SearchField from '../../containers/SearchField/SearchField.container'
+import SearchField from 'containers/SearchField/SearchField.container'
 
 // Assets
-import './artists.scss'
+import './Artists.scss'
 
 // Interfaces
 type Props = {

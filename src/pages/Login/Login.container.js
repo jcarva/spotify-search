@@ -4,11 +4,11 @@
 import * as React from 'react'
 
 // Services
-import spotifyApi from '../../services/spotify'
+import spotifyApi from 'services/spotify'
 
 // Assets
-import logo from '../../assets/images/logo.svg'
-import './login.scss'
+import logo from 'assets/images/logo.svg'
+import './Login.scss'
 
 // Interfaces
 type Props = {
