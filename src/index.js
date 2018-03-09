@@ -7,7 +7,7 @@ import registerServiceWorker from './registerServiceWorker'
 import Root from './root/Root.component.js'
 
 // Assets
-import './assets/styles/index.css'
+import 'assets/styles/index.css'
 
 ReactDOM.render(<Root />, document.getElementById('root'))
 registerServiceWorker()
