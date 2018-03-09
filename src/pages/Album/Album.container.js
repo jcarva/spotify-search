@@ -7,7 +7,7 @@ import * as React from 'react'
 import spotifyApi from '../../services/spotify'
 
 // Assets
-import './album.scss'
+import './Album.scss'
 
 // Interfaces
 type Props = {

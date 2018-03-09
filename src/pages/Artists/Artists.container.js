@@ -10,7 +10,7 @@ import spotifyApi from '../../services/spotify'
 import SearchField from '../../containers/SearchField/SearchField.container'
 
 // Assets
-import './artists.scss'
+import './Artists.scss'
 
 // Interfaces
 type Props = {

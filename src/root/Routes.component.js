@@ -8,10 +8,10 @@ import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom
 import spotifyApi from '../services/spotify'
 
 // Pages
-import Login from '../pages/login/login.container'
-import Artists from '../pages/artists/artists.container'
-import Artist from '../pages/artist/artist.container'
-import Album from '../pages/album/album.container'
+import Login from '../pages/Login/Login.container'
+import Artists from '../pages/Artists/Artists.container'
+import Artist from '../pages/Artist/Artist.container'
+import Album from '../pages/Album/Album.container'
 
 // Private Route
 const PrivateRoute = (props: Object) => spotifyApi.getAccessToken()
