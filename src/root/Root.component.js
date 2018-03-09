@@ -4,7 +4,7 @@
 import * as React from 'react'
 
 // Components
-import Routes from './root.routes'
+import Routes from './Routes.component.js'
 
 // Interfaces
 type Props = {
