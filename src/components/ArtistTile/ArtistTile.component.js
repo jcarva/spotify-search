@@ -3,11 +3,11 @@
 // Dependencies
 import * as React from 'react'
 
-// Assets
-import './ArtistTile.scss'
-
 // Components
 import Stars from 'components/Stars/Stars.component'
+
+// Assets
+import './ArtistTile.scss'
 
 // Interfaces
 type Props = {

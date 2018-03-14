@@ -2,11 +2,13 @@
 
 // Dependencies
 import * as React from 'react'
+import _ from 'lodash'
 
 // Services
 import spotifyApi from 'services/spotify'
 
 import Artist from 'components/Artist/Artist.component'
+import AlbumsGrid from 'components/AlbumsGrid/AlbumsGrid.component'
 
 // Assets
 import './Artist.scss'
@@ -63,7 +65,7 @@ class ArtistPage extends React.Component<Props, State> {
 
     spotifyApi.getArtistAlbums(this.props.match.params.id)
       .then(
-        (data) => this.setAlbums(data.items),
+        (data) => this.setAlbums(_.orderBy(data.items, (album) => album.release_date, ['desc'])),
         (err) => console.error(err)
       )
   }
@@ -102,17 +104,11 @@ class ArtistPage extends React.Component<Props, State> {
             : '0'
           }
         />
-        <div>
-          {
-            this.state.albums.map((album) => {
-              return (
-                <div key={album.id} className='album-tile' onClick={() => this.props.history.push(`/albums/${album.id}`)}>
-                  {album.name}
-                </div>
-              )
-            })
-          }
-        </div>
+        <h2 className='section-title'>Albums</h2>
+        <AlbumsGrid
+          albums={this.state.albums}
+          handleAlbumClick={(albumId) => this.props.history.push(`/albums/${albumId}`)}
+        />
       </div>
     )
   }
