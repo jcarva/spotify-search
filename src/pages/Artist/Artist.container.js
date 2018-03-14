@@ -6,8 +6,11 @@ import * as React from 'react'
 // Services
 import spotifyApi from 'services/spotify'
 
+import Artist from 'components/Artist/Artist.component'
+
 // Assets
 import './Artist.scss'
+import defaultArtist from 'assets/images/defaultArtist.svg'
 
 // Interfaces
 type Props = {
@@ -21,7 +24,7 @@ type State = {
 };
 
 // Main Component
-class Artist extends React.Component<Props, State> {
+class ArtistPage extends React.Component<Props, State> {
   constructor (props: Props, context: any) {
     super(props, context)
     this.state = {
@@ -65,14 +68,40 @@ class Artist extends React.Component<Props, State> {
       )
   }
 
+  followersParser = (followers: string): string => {
+    followers = followers.toString().split('').reverse().join('')
+    let result = ''
+    const gapSize = 3
+
+    while (followers.length > 0) {
+      result = result + ' ' + followers.substring(0, gapSize)
+      followers = followers.substring(gapSize)
+    }
+
+    return result.split('').reverse().join('')
+  }
+
   render () {
     return (
-      <div id='artist-page'>
-        <button onClick={() => this.props.history.goBack()}>back</button>
-        <p>Artist Page</p>
-        <div className='artist-tile'>
-          {this.state.artist.name}
+      <div id='artist-page' className='page'>
+        <div className='header'>
+          <div onClick={() => this.props.history.goBack()} className='back-button' >
+            <i className='fas fa-chevron-left' />
+          </div>
         </div>
+        <p className='type'>ARTIST</p>
+        <Artist
+          name={this.state.artist.name}
+          popularity={this.state.artist.popularity}
+          image={(this.state.artist.images && this.state.artist.images[0]&& this.state.artist.images[0].url)
+            ? this.state.artist.images[0].url
+            : defaultArtist
+          }
+          followers={(this.state.artist && this.state.artist.followers && this.state.artist.followers.total)
+            ? this.followersParser(this.state.artist.followers.total.toString())
+            : '0'
+          }
+        />
         <div>
           {
             this.state.albums.map((album) => {
@@ -89,4 +118,4 @@ class Artist extends React.Component<Props, State> {
   }
 }
 
-export default Artist
+export default ArtistPage
