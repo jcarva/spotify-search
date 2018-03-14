@@ -75,7 +75,7 @@ class SearchField extends React.Component<Props, State> {
           onClick={this.handleReset}
           style={{cursor: this.state.value ? 'pointer' : 'text'}}
         >
-          {this.state.value && '×'}
+          {this.state.value && 'x'}
         </div>
       </div>
     )
