@@ -1,6 +1,9 @@
 @import '../../assets/styles/variables.scss';
 
-.fa-star {
-  color: $dark-orange;
-  font-size: 1.7em;
+.stars {
+  margin-top: 2px;
+  .fa-star {
+    color: $dark-orange;
+    font-size: 1em;
+  }
 }
