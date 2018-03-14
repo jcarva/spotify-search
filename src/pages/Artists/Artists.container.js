@@ -72,7 +72,7 @@ class Artists extends React.Component<Props, State> {
 
   render () {
     return (
-      <div id='artists-page'>
+      <div id='artists-page' className='page'>
         Artists Page
         <SearchField dispatch={this.handleSearchSubmit} />
         <div>
