@@ -12,6 +12,7 @@ import ArtistsGrid from 'components/ArtistsGrid/ArtistsGrid.component'
 
 // Assets
 import './Artists.scss'
+import defaultArtist from 'assets/images/defaultArtist.svg'
 
 // Interfaces
 type Props = {
@@ -33,11 +34,24 @@ class ArtistsPage extends React.Component<Props, State> {
   }
 
   /**
+   * Parses the fetched group of artists
+   * @param  {Array<Object>} artists The group of artists that will be parsed
+   * @return {Array<Object>}
+   */
+  artistsParser = (artists: Array<Object>): Array<Object> => artists.map((artist) => ({
+    id: artist.id,
+    name: artist.name,
+    image: (artist.images && artist.images[0] && artist.images[0].url) ? artist.images[0].url : defaultArtist,
+    genre: (artist.genres && artist.genres[0]) ? artist.genres[artist.genres.length - 1] : '',
+    popularity: artist.popularity
+  }))
+
+  /**
    * Stores a group of artists in the component's state
    * @param  {Array<Object>} artists The group of artists that will be stored
    * @return {Void}
    */
-  setArtists = (artists: Array<Object>): void => this.setState({artists})
+  setArtists = (artists: Array<Object>): void => this.setState({artists: this.artistsParser(artists)})
 
   /**
    * Updates the inital component's state
