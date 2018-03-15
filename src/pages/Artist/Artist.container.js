@@ -77,7 +77,7 @@ class ArtistPage extends React.Component<Props, State> {
    * @param  {Array<Object>} albums The group of albums that will be stored
    * @return {Void}
    */
-  setAlbums= (albums: Array<Object>): void => this.setState({albums: this.albumsParser(albums)})
+  setAlbums = (albums: Array<Object>): void => this.setState({albums: this.albumsParser(albums)})
 
   /**
    * Fetches the current artist and its albums to update the inital component's state
