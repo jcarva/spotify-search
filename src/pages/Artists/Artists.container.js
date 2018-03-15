@@ -23,7 +23,7 @@ type State = {
 };
 
 // Main Component
-class Artists extends React.Component<Props, State> {
+class ArtistsPage extends React.Component<Props, State> {
   searchInput: ?HTMLInputElement
   constructor (props: Props, context: any) {
     super(props, context)
@@ -87,4 +87,4 @@ class Artists extends React.Component<Props, State> {
   }
 }
 
-export default Artists
+export default ArtistsPage
