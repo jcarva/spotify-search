@@ -70,12 +70,6 @@ class AlbumPage extends React.Component<Props, State> {
       )
   }
 
-  millisToMinutesAndSeconds = (millis: number): string => {
-    const minutes = Math.floor(millis / 60000)
-    const seconds = ((millis % 60000) / 1000)
-    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds.toFixed(0)
-  }
-
   albumDuration = () => this.state.tracks && this.state.tracks.length
     ? this.state.tracks.reduce((a, b) => ({duration_ms: a.duration_ms + b.duration_ms})).duration_ms
     : 0
@@ -96,7 +90,7 @@ class AlbumPage extends React.Component<Props, State> {
           releaseDate={this.state.album.release_date ? this.state.album.release_date.split('-')[0] : ''}
           albumDetails={{
             totalOfSongs: this.state.tracks.length,
-            albumDuration: this.millisToMinutesAndSeconds(this.albumDuration())
+            albumDuration: this.albumDuration()
           }}
           image={(this.state.album.images && this.state.album.images[0]&& this.state.album.images[0].url)
             ? this.state.album.images[0].url
@@ -104,10 +98,7 @@ class AlbumPage extends React.Component<Props, State> {
           }
         />
         <h2 className='section-title'>Tracks</h2>
-        <TracksList
-          tracks={this.state.tracks}
-          millisToMinutesAndSeconds={this.millisToMinutesAndSeconds}
-        />
+        <TracksList tracks={this.state.tracks} />
       </div>
     )
   }

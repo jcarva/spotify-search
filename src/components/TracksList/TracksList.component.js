@@ -3,11 +3,14 @@
 // Dependencies
 import * as React from 'react'
 
+// Services
+import utils from 'services/utils'
+
 // Assets
 import './TracksList.scss'
 
 // Main Component
-const TracksList = ({tracks = [], millisToMinutesAndSeconds}: {tracks: Array<Object>, millisToMinutesAndSeconds: Function}) => {
+const TracksList = ({tracks = []}: {tracks: Array<Object>}) => {
   return (
     <table className='tracks-list'>
       <tbody>
@@ -22,7 +25,7 @@ const TracksList = ({tracks = [], millisToMinutesAndSeconds}: {tracks: Array<Obj
               <tr key={track.id} className='track'>
                 <td>{index+1}</td>
                 <td className='name'>{track.name}</td>
-                <td className='time'>{millisToMinutesAndSeconds(track.duration_ms)}</td>
+                <td className='time'>{utils.millisToMinutesAndSeconds(track.duration_ms)}</td>
               </tr>
             )
           })
