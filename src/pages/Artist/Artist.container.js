@@ -6,6 +6,7 @@ import _ from 'lodash'
 
 // Services
 import spotifyApi from 'services/spotify'
+import utils from 'services/utils'
 
 import Artist from 'components/Artist/Artist.component'
 import AlbumsGrid from 'components/AlbumsGrid/AlbumsGrid.component'
@@ -13,6 +14,7 @@ import AlbumsGrid from 'components/AlbumsGrid/AlbumsGrid.component'
 // Assets
 import './Artist.scss'
 import defaultArtist from 'assets/images/defaultArtist.svg'
+import defaultAlbum from 'assets/images/defaultAlbum.svg'
 
 // Interfaces
 type Props = {
@@ -39,18 +41,43 @@ class ArtistPage extends React.Component<Props, State> {
   }
 
   /**
+   * Parses the fetched artist
+   * @param  {Object} albums The artist that will be parsed
+   * @return {Object}
+   */
+  artistParser = (artist: Object): Object => ({
+    id: artist.id,
+    name: artist.name,
+    popularity: artist.popularity,
+    image: (artist.images && artist.images[0]&& artist.images[0].url) ? artist.images[0].url : defaultArtist,
+    followers: (artist && artist.followers && artist.followers.total) ? utils.bigNumberParser(artist.followers.total.toString()) : '0'
+  })
+
+  /**
+   * Parses the fetched group of albums
+   * @param  {Array<Object>} albums The group of albums that will be parsed
+   * @return {Array<Object>}
+   */
+  albumsParser = (albums: Array<Object>): Array<Object> => albums.map((album) => ({
+    id: album.id,
+    name: album.name,
+    image: (album.images && album.images[0]&& album.images[0].url) ? album.images[0].url : defaultAlbum,
+    releaseDate: album.release_date.split('-')[0]
+  }))
+
+  /**
    * Stores an artist in the component's state
    * @param  {Object} artist The artist that will be stored
    * @return {Void}
    */
-  setArtist = (artist: Object): void => this.setState({artist})
+  setArtist = (artist: Object): void => this.setState({artist: this.artistParser(artist)})
 
   /**
    * Stores a group of albums in the component's state
    * @param  {Array<Object>} albums The group of albums that will be stored
    * @return {Void}
    */
-  setAlbums= (albums: Array<Object>): void => this.setState({albums})
+  setAlbums = (albums: Array<Object>): void => this.setState({albums: this.albumsParser(albums)})
 
   /**
    * Fetches the current artist and its albums to update the inital component's state
@@ -70,19 +97,6 @@ class ArtistPage extends React.Component<Props, State> {
       )
   }
 
-  followersParser = (followers: string): string => {
-    followers = followers.toString().split('').reverse().join('')
-    let result = ''
-    const gapSize = 3
-
-    while (followers.length > 0) {
-      result = result + ' ' + followers.substring(0, gapSize)
-      followers = followers.substring(gapSize)
-    }
-
-    return result.split('').reverse().join('')
-  }
-
   render () {
     return (
       <div id='artist-page' className='page'>
@@ -95,14 +109,8 @@ class ArtistPage extends React.Component<Props, State> {
         <Artist
           name={this.state.artist.name}
           popularity={this.state.artist.popularity}
-          image={(this.state.artist.images && this.state.artist.images[0]&& this.state.artist.images[0].url)
-            ? this.state.artist.images[0].url
-            : defaultArtist
-          }
-          followers={(this.state.artist && this.state.artist.followers && this.state.artist.followers.total)
-            ? this.followersParser(this.state.artist.followers.total.toString())
-            : '0'
-          }
+          image={this.state.artist.image}
+          followers={this.state.artist.followers}
         />
         <h2 className='section-title'>Albums</h2>
         <AlbumsGrid

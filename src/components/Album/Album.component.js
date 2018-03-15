@@ -3,6 +3,9 @@
 // Dependencies
 import * as React from 'react'
 
+// Services
+import utils from 'services/utils'
+
 // Components
 import Stars from 'components/Stars/Stars.component'
 
@@ -33,7 +36,9 @@ const Album = ({name, image, artist, popularity, releaseDate, albumDetails}: Pro
           <p>By</p>
           <p className='name'>{artist}</p>
         </div>
-        <p>{releaseDate} &#9900; {albumDetails.totalOfSongs} Songs, {albumDetails.albumDuration} min.</p>
+        <p>
+          {releaseDate} &#9900; {albumDetails.totalOfSongs} Songs, {utils.millisToMinutesAndSeconds(albumDetails.albumDuration)} min.
+        </p>
       </div>
     </div>
   )

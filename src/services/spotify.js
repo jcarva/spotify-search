@@ -1,3 +1,5 @@
+/* @flow */
+
 // Dependencies
 import SpotifyWebApi from 'spotify-web-api-js'
 

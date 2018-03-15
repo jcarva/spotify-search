@@ -8,7 +8,6 @@ import ArtistTile from 'components/ArtistTile/ArtistTile.component'
 
 // Assets
 import './ArtistsGrid.scss'
-import defaultArtist from 'assets/images/defaultArtist.svg'
 
 // Inferfaces
 type Props = {
@@ -25,11 +24,11 @@ const ArtistsGrid = ({artists = [], handleArtistClick}: Props) => {
           return (
             <ArtistTile
               key={artist.id}
-              handleClick={() => handleArtistClick(artist.id)}
               name={artist.name}
-              image={(artist.images && artist.images[0] && artist.images[0].url) ? artist.images[0].url : defaultArtist}
-              genre={(artist.genres && artist.genres[0]) ? artist.genres[artist.genres.length - 1] : ''}
+              image={artist.image}
+              genre={artist.genre}
               popularity={artist.popularity}
+              handleClick={() => handleArtistClick(artist.id)}
             />
           )
         })
