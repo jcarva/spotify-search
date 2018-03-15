@@ -6,8 +6,13 @@ import * as React from 'react'
 // Services
 import spotifyApi from 'services/spotify'
 
+// Components
+import Album from 'components/Album/Album.component'
+import TracksList from 'components/TracksList/TracksList.component'
+
 // Assets
 import './Album.scss'
+import defaultArtist from 'assets/images/defaultArtist.svg'
 
 // Interfaces
 type Props = {
@@ -21,7 +26,7 @@ type State = {
 };
 
 // Main Component
-class Album extends React.Component<Props, State> {
+class AlbumPage extends React.Component<Props, State> {
   constructor (props: Props, context: any) {
     super(props, context)
     this.state = {
@@ -65,28 +70,47 @@ class Album extends React.Component<Props, State> {
       )
   }
 
+  millisToMinutesAndSeconds = (millis: number): string => {
+    const minutes = Math.floor(millis / 60000)
+    const seconds = ((millis % 60000) / 1000)
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds.toFixed(0)
+  }
+
+  albumDuration = () => this.state.tracks && this.state.tracks.length
+    ? this.state.tracks.reduce((a, b) => ({duration_ms: a.duration_ms + b.duration_ms})).duration_ms
+    : 0
+
   render () {
     return (
-      <div id='album-page'>
-        <button onClick={() => this.props.history.goBack()}>back</button>
-        <p>Album Page</p>
-        <div className='album-tile'>
-          {this.state.album.name}
+      <div id='album-page' className='page'>
+        <div className='header'>
+          <div onClick={() => this.props.history.goBack()} className='back-button' >
+            <i className='fas fa-chevron-left' />
+          </div>
         </div>
-        <div>
-          {
-            this.state.tracks.map((track) => {
-              return (
-                <div key={track.id} className='track-tile'>
-                  {track.name}
-                </div>
-              )
-            })
+        <p className='type'>ALBUM</p>
+        <Album
+          name={this.state.album.name}
+          artist={this.state.album.artists && this.state.album.artists['0'] ? this.state.album.artists['0'].name : ''}
+          popularity={this.state.album.popularity}
+          releaseDate={this.state.album.release_date ? this.state.album.release_date.split('-')[0] : ''}
+          albumDetails={{
+            totalOfSongs: this.state.tracks.length,
+            albumDuration: this.millisToMinutesAndSeconds(this.albumDuration())
+          }}
+          image={(this.state.album.images && this.state.album.images[0]&& this.state.album.images[0].url)
+            ? this.state.album.images[0].url
+            : defaultArtist
           }
-        </div>
+        />
+        <h2 className='section-title'>Tracks</h2>
+        <TracksList
+          tracks={this.state.tracks}
+          millisToMinutesAndSeconds={this.millisToMinutesAndSeconds}
+        />
       </div>
     )
   }
 }
 
-export default Album
+export default AlbumPage

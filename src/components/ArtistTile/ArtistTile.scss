@@ -1,0 +1,33 @@
+.artist-tile {
+  display: flex;
+  flex-direction: column;
+  width: 182px;
+  font-size: 17px;
+  list-style-type: none;
+  line-height: 28px;
+  text-align: center;
+  overflow-wrap: break-word;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+
+  .avatar {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    opacity: 1;
+    &:hover {
+      opacity: 0.4;
+    }
+  }
+
+  .name {
+    margin: 0;
+  }
+
+  .genre {
+    margin: 0;
+    font-family: 'Proxima Thin', Georgia, sans-serif;
+  }
+}

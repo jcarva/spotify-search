@@ -2,12 +2,17 @@
 
 // Dependencies
 import * as React from 'react'
+import _ from 'lodash'
 
 // Services
 import spotifyApi from 'services/spotify'
 
+import Artist from 'components/Artist/Artist.component'
+import AlbumsGrid from 'components/AlbumsGrid/AlbumsGrid.component'
+
 // Assets
 import './Artist.scss'
+import defaultArtist from 'assets/images/defaultArtist.svg'
 
 // Interfaces
 type Props = {
@@ -21,7 +26,7 @@ type State = {
 };
 
 // Main Component
-class Artist extends React.Component<Props, State> {
+class ArtistPage extends React.Component<Props, State> {
   constructor (props: Props, context: any) {
     super(props, context)
     this.state = {
@@ -60,33 +65,53 @@ class Artist extends React.Component<Props, State> {
 
     spotifyApi.getArtistAlbums(this.props.match.params.id)
       .then(
-        (data) => this.setAlbums(data.items),
+        (data) => this.setAlbums(_.orderBy(data.items, (album) => album.release_date, ['desc'])),
         (err) => console.error(err)
       )
   }
 
+  followersParser = (followers: string): string => {
+    followers = followers.toString().split('').reverse().join('')
+    let result = ''
+    const gapSize = 3
+
+    while (followers.length > 0) {
+      result = result + ' ' + followers.substring(0, gapSize)
+      followers = followers.substring(gapSize)
+    }
+
+    return result.split('').reverse().join('')
+  }
+
   render () {
     return (
-      <div id='artist-page'>
-        <button onClick={() => this.props.history.goBack()}>back</button>
-        <p>Artist Page</p>
-        <div className='artist-tile'>
-          {this.state.artist.name}
+      <div id='artist-page' className='page'>
+        <div className='header'>
+          <div onClick={() => this.props.history.goBack()} className='back-button' >
+            <i className='fas fa-chevron-left' />
+          </div>
         </div>
-        <div>
-          {
-            this.state.albums.map((album) => {
-              return (
-                <div key={album.id} className='album-tile' onClick={() => this.props.history.push(`/albums/${album.id}`)}>
-                  {album.name}
-                </div>
-              )
-            })
+        <p className='type'>ARTIST</p>
+        <Artist
+          name={this.state.artist.name}
+          popularity={this.state.artist.popularity}
+          image={(this.state.artist.images && this.state.artist.images[0]&& this.state.artist.images[0].url)
+            ? this.state.artist.images[0].url
+            : defaultArtist
           }
-        </div>
+          followers={(this.state.artist && this.state.artist.followers && this.state.artist.followers.total)
+            ? this.followersParser(this.state.artist.followers.total.toString())
+            : '0'
+          }
+        />
+        <h2 className='section-title'>Albums</h2>
+        <AlbumsGrid
+          albums={this.state.albums}
+          handleAlbumClick={(albumId) => this.props.history.push(`/albums/${albumId}`)}
+        />
       </div>
     )
   }
 }
 
-export default Artist
+export default ArtistPage
