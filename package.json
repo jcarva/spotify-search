@@ -55,7 +55,7 @@
     "build": "npm-run-all build-css build-js",
     "test": "node scripts/test.js --env=jsdom",
     "flow": "flow",
-    "lint": "./node_modules/.bin/eslint --ignore-path .gitignore ."
+    "lint": "./node_modules/.bin/eslint --ignore-path .gitignore --ignore-pattern src/registerServiceWorker.js src/"
   },
   "jest": {
     "collectCoverageFrom": [
