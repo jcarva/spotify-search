@@ -13,6 +13,7 @@ Actually hosted on: http://tt-music-search.s3-website.us-east-2.amazonaws.com
 
 ## Index
 
+- [Creation Environment](#creation-environment)
 - [Stack](#stack)
 - [Design Goals](#design-goals)
 - [API](#api)
@@ -26,6 +27,11 @@ Actually hosted on: http://tt-music-search.s3-website.us-east-2.amazonaws.com
     - [Test](#test)
 
 ---
+
+## Creation Environment
+
+This project is currently developed in a [Linux/GNU Ubuntu](https://www.ubuntu.com/) 16.04 LTS x86_64 OS, using [Visual Studio Code](https://www.visualstudio.com/) as IDE.
+
 
 ## Stack
 
@@ -51,7 +57,7 @@ Actually hosted on: http://tt-music-search.s3-website.us-east-2.amazonaws.com
 - Separate [Smart and Dumb](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) components
 - Use [Flow](https://flow.org/) to obtain a safe Javascript environment
 - Use Spotify Web API JS as lightweight wrapper for the [Spotify Web API](https://developer.spotify.com/web-api/)
-- Use only modern native CSS features to style the whole application
+- Use only modern native CSS features to style the whole application. e.g. FlexBox, CSS Grid and etc.
 
 ---
 
