@@ -94,6 +94,16 @@ class Login extends React.Component<Props, void> {
           <p>This application exclusively uses spotify accounts as a way to access its features.</p>
           <div className='login-btn' onClick={this.handleLogin}>Login</div>
         </div>
+        <div className='project-reference'>
+          <a
+            className='github-button'
+            href='https://github.com/jcarva/tt-music-search'
+            data-size='large'
+            aria-label='Star jcarva/tt-music-search on GitHub'
+          >
+            Follow
+          </a>
+        </div>
       </div>
     )
   }
