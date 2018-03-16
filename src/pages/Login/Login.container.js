@@ -67,7 +67,7 @@ class Login extends React.Component<Props, void> {
   }
 
   /**
-   * Redirects the user to VPlayer's Spotify authentication URL
+   * Redirects the user to tt-music-search's Spotify authentication URL
    * @return {Void}
    */
   handleLogin = () => {
@@ -87,14 +87,13 @@ class Login extends React.Component<Props, void> {
 
   render () {
     return (
-      <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1 className='App-title'>Welcome to VPlayer</h1>
-        </header>
-        <p className='login-btn' onClick={this.handleLogin}>
-          Spotify Login
-        </p>
+      <div id='login-page' className='page'>
+        <div className='content'>
+          <img src={logo} className='logo' alt='logo' />
+          <h1 className='title'>Welcome to tt-music-search</h1>
+          <p>This application exclusively uses spotify accounts as a way to access its features.</p>
+          <div className='login-btn' onClick={this.handleLogin}>Login</div>
+        </div>
       </div>
     )
   }
