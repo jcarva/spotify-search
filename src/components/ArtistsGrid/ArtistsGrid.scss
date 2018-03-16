@@ -4,3 +4,18 @@
   justify-content: center;
   align-content: center;
 }
+
+.empty-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+
+  p {
+    margin-top: 0;
+    font-family: Proxima Thin,Georgia,sans-serif;
+    color: #ccc;
+    text-align: center;
+  }
+}

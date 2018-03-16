@@ -15,7 +15,16 @@ type Props = {
   handleArtistClick: Function
 }
 
-// Main Component
+// Components
+const EmptySearch = () => {
+  return (
+    <div className='empty-search'>
+      <h1>No results found for your search</h1>
+      <p>Please make sure your words are spelled correctly or use different keywords.</p>
+    </div>
+  )
+}
+
 const ArtistsGrid = ({artists = [], handleArtistClick}: Props) => {
   return (
     <div className='artists-grid'>
@@ -37,4 +46,7 @@ const ArtistsGrid = ({artists = [], handleArtistClick}: Props) => {
   )
 }
 
-export default ArtistsGrid
+// Main Component
+const ArtistGridContent = (props: Props) => props.artists.length ? <ArtistsGrid {...{...props}} /> : <EmptySearch />
+
+export default ArtistGridContent

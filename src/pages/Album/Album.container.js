@@ -105,7 +105,6 @@ class AlbumPage extends React.Component<Props, State> {
             albumDuration: utils.albumDurationCalculator(this.state.tracks)
           }}
         />
-        <h2 className='section-title'>Tracks</h2>
         <TracksList tracks={this.state.tracks} />
       </div>
     )

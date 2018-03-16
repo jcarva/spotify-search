@@ -37,7 +37,7 @@ const Album = ({name, image, artist, popularity, releaseDate, albumDetails}: Pro
           <p className='name'>{artist}</p>
         </div>
         <p>
-          {releaseDate} &#9900; {albumDetails.totalOfSongs} Songs, {utils.millisToMinutesAndSeconds(albumDetails.albumDuration)} min.
+          {releaseDate} &#9737; {albumDetails.totalOfSongs} Songs, {utils.millisToMinutesAndSeconds(albumDetails.albumDuration)} min.
         </p>
       </div>
     </div>

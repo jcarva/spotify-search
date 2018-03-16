@@ -19,12 +19,11 @@ Actually hosted on: http://tt-music-search.s3-website.us-east-2.amazonaws.com
 - [Avaialable Pages](#available-pages)
 - [Getting Started](#getting-started)
 - [Local Commands](#local-commands)
-    - [Build](#build)
     - [Development](#development)
-    - [Production](#production)
+    - [Build](#build)
     - [JavaScript Lint](#javascript-lint)
-- [Docker Build and Run](#docker-build-and-run)
-- [Auxiliary Commands](#docker-auxiliary-commands)
+    - [Flow Lint](#flow-lint)
+    - [Test](#test)
 
 ---
 
@@ -142,7 +141,7 @@ This above command is used to identifying and reporting on patterns in Flow on t
 $ yarn test
 ```
 
-This above command is used to identifying and reporting on patterns in JavaScript on the entire project.
+This above command is used to run all test in the entire project.
 
 ---
 
