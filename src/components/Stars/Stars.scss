@@ -1,0 +1,9 @@
+@import '../../assets/styles/variables.scss';
+
+.stars {
+  margin-top: 2px;
+  .fa-star {
+    color: $dark-orange;
+    font-size: 1em;
+  }
+}

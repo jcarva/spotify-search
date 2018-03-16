@@ -3,6 +3,9 @@
 // Dependencies
 import * as React from 'react'
 
+// Assets
+import './SearchField.css'
+
 // Interfaces
 type Props = {
   dispatch: Function,
@@ -15,7 +18,7 @@ type State = {
 
 // Main Component
 class SearchField extends React.Component<Props, State> {
-  static defaultProps = { timeout: 500 }
+  static defaultProps = { timeout: 1000 }
   inputField: ?HTMLInputElement
   typingTimeout: any = 0
   constructor (props: Props, context: any) {
@@ -58,14 +61,22 @@ class SearchField extends React.Component<Props, State> {
 
   render () {
     return (
-      <div>
+      <div className='search-field'>
+        <div className='search-icon icon-container'><i className='fas fa-search' /></div>
         <input
           type='text'
+          placeholder='Search'
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
           ref={(input) => { this.inputField = input }}
         />
-        <button onClick={this.handleReset}>Reset</button>
+        <div
+          className='reset-search icon-container'
+          onClick={this.handleReset}
+          style={{cursor: this.state.value ? 'pointer' : 'text'}}
+        >
+          {this.state.value && 'x'}
+        </div>
       </div>
     )
   }

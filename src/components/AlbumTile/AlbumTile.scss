@@ -1,0 +1,28 @@
+.album-tile {
+  display: flex;
+  flex-direction: column;
+  width: 182px;
+  padding: 15px;
+  margin: 10px;
+  font-family: 'Proxima Thin', Georgia, sans-serif;
+  font-size: 17px;
+  list-style-type: none;
+  line-height: 28px;
+  text-align: center;
+  overflow-wrap: break-word;
+  cursor: pointer;
+
+  .avatar {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 8px;
+    opacity: 1;
+    &:hover {
+      opacity: 0.4;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}
