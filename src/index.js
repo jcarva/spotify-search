@@ -7,7 +7,7 @@ import registerServiceWorker from './registerServiceWorker'
 import Root from './root/Root.component.js'
 
 // Assets
-import 'assets/styles/global.scss'
+import 'assets/styles/global.css'
 
 ReactDOM.render(<Root />, document.getElementById('root'))
 registerServiceWorker()

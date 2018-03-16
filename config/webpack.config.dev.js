@@ -157,33 +157,52 @@ module.exports = {
           // "style" loader turns CSS into JS modules that inject <style> tags.
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
-          { test: /\.css$/, use: ['style-loader', 'css-loader'] },
           {
-            test: /(\.scss|\.sass)$/,
-            exclude: /node_modules/,
-            use: [
-              'style-loader',
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: true
-                }
-              }, {
-                loader: 'postcss-loader',
-                options: {
-                  plugins: () => [
-                    require('autoprefixer')
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract(
+              Object.assign(
+                {
+                  fallback: {
+                    loader: require.resolve('style-loader'),
+                    options: {
+                      hmr: false,
+                    },
+                  },
+                  use: [
+                    {
+                      loader: require.resolve('css-loader'),
+                      options: {
+                        importLoaders: 1,
+                        minimize: true,
+                        sourceMap: shouldUseSourceMap,
+                      },
+                    },
+                    {
+                      loader: require.resolve('postcss-loader'),
+                      options: {
+                        // Necessary for external CSS imports to work
+                        // https://github.com/facebookincubator/create-react-app/issues/2677
+                        ident: 'postcss',
+                        plugins: () => [
+                          require('postcss-flexbugs-fixes'),
+                          autoprefixer({
+                            browsers: [
+                              '>1%',
+                              'last 4 versions',
+                              'Firefox ESR',
+                              'not ie < 9', // React doesn't support IE8 anyway
+                            ],
+                            flexbox: 'no-2009',
+                          }),
+                        ],
+                      },
+                    },
                   ],
-                  sourceMap: true
-                }
-              }, {
-                loader: 'sass-loader',
-                options: {
-                  includePaths: [path.resolve(paths.appSrc, 'src', 'scss', 'sass')],
-                  sourceMap: true
-                }
-              }
-            ]
+                },
+                extractTextPluginOptions
+              )
+            ),
+            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.

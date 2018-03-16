@@ -12,7 +12,7 @@ import Album from 'components/Album/Album.component'
 import TracksList from 'components/TracksList/TracksList.component'
 
 // Assets
-import './Album.scss'
+import './Album.css'
 import defaultAlbum from 'assets/images/defaultAlbum.svg'
 
 // Interfaces

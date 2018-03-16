@@ -7,7 +7,7 @@ import * as React from 'react'
 import AlbumTile from 'components/AlbumTile/AlbumTile.component'
 
 // Assets
-import './AlbumsGrid.scss'
+import './AlbumsGrid.css'
 
 // Main Component
 const AlbumsGrid = ({albums = [], handleAlbumClick}: {albums: Array<Object>, handleAlbumClick: Function}) => {

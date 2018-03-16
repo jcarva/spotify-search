@@ -8,7 +8,7 @@ import spotifyApi from 'services/spotify'
 
 // Assets
 import logo from 'assets/images/logo.svg'
-import './Login.scss'
+import './Login.css'
 
 // Interfaces
 type Props = {

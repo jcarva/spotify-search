@@ -35,6 +35,7 @@
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
+    "react-scripts": "^1.1.1",
     "spotify-web-api-js": "^0.23.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
@@ -45,11 +46,15 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build-css": "./node_modules/.bin/node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && ./node_modules/.bin/node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start-js": "./node_modules/.bin/react-scripts start",
+    "start": "./node_modules/.bin/npm-run-all -p watch-css start-js",
+    "build-js": "./node_modules/.bin/react-scripts build",
+    "build": "./node_modules/.bin/npm-run-all build-css build-js",
     "test": "node scripts/test.js --env=jsdom",
-    "flow": "flow",
-    "lint": "./node_modules/.bin/eslint --ignore-path .gitignore ."
+    "flow": "npm run build-css && ./node_modules/.bin/flow",
+    "lint": "./node_modules/.bin/eslint --ignore-path .gitignore --ignore-pattern src/registerServiceWorker.js src/"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -99,6 +104,8 @@
     "flow-babel-webpack-plugin": "^1.1.1",
     "flow-bin": "^0.66.0",
     "node-sass": "^4.7.2",
+    "node-sass-chokidar": "^1.1.0",
+    "npm-run-all": "^4.1.2",
     "sass-loader": "^6.0.7"
   }
 }

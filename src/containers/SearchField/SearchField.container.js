@@ -4,7 +4,7 @@
 import * as React from 'react'
 
 // Assets
-import './SearchField.scss'
+import './SearchField.css'
 
 // Interfaces
 type Props = {

@@ -7,7 +7,7 @@ import * as React from 'react'
 import utils from 'services/utils'
 
 // Assets
-import './TracksList.scss'
+import './TracksList.css'
 
 // Main Component
 const TracksList = ({tracks = []}: {tracks: Array<Object>}) => {

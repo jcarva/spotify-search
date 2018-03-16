@@ -10,7 +10,7 @@ import utils from 'services/utils'
 import Stars from 'components/Stars/Stars.component'
 
 // Assets
-import './Album.scss'
+import './Album.css'
 
 // Interfaces
 type Props = {
@@ -26,7 +26,7 @@ type Props = {
 const Album = ({name, image, artist, popularity, releaseDate, albumDetails}: Props) => {
   return (
     <div className='album'>
-      <img className='avatar' src={image} />
+      <img className='avatar' src={image} alt='album-cover' />
       <div className='details'>
         <div className='header'>
           <h2 className='name'>{name}</h2>
