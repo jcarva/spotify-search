@@ -6,6 +6,9 @@ import * as React from 'react'
 // Components
 import Stars from 'components/Stars/Stars.component'
 
+// Assets
+import './Artist.css'
+
 // Interfaces
 type Props = {
   name: string,
@@ -14,14 +17,11 @@ type Props = {
   popularity: number
 }
 
-// Assets
-import './Artist.scss'
-
 // Main Component
 const Artist = ({name, image, followers, popularity}: Props) => {
   return (
     <div className='artist'>
-      <img className='avatar' src={image} />
+      <img className='avatar' src={image} alt='artist-avatar' />
       <div className='details'>
         <div className='header'>
           <h2 className='name'>{name}</h2>

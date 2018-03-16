@@ -4,7 +4,7 @@
 import * as React from 'react'
 
 // Assets
-import './Stars.scss'
+import './Stars.css'
 
 // Interfaces
 type Props = {

@@ -7,7 +7,7 @@ import * as React from 'react'
 import ArtistTile from 'components/ArtistTile/ArtistTile.component'
 
 // Assets
-import './ArtistsGrid.scss'
+import './ArtistsGrid.css'
 
 // Inferfaces
 type Props = {

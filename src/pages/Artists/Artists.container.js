@@ -11,7 +11,7 @@ import SearchField from 'containers/SearchField/SearchField.container'
 import ArtistsGrid from 'components/ArtistsGrid/ArtistsGrid.component'
 
 // Assets
-import './Artists.scss'
+import './Artists.css'
 import defaultArtist from 'assets/images/defaultArtist.svg'
 
 // Interfaces

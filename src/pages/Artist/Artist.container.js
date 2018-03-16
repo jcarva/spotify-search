@@ -12,7 +12,7 @@ import Artist from 'components/Artist/Artist.component'
 import AlbumsGrid from 'components/AlbumsGrid/AlbumsGrid.component'
 
 // Assets
-import './Artist.scss'
+import './Artist.css'
 import defaultArtist from 'assets/images/defaultArtist.svg'
 import defaultAlbum from 'assets/images/defaultAlbum.svg'
 
