@@ -3,11 +3,11 @@ Contact me on [Linkedin](https://www.linkedin.com/in/jaelsoncarvalho), send an e
 
 ---
 
-# tt-music-search
+# spotify-search
 
 A "music search" web application, using a few named techs, the app let users search for an Artist, then inspect this Artist's Albums and related Tracks.
 
-Actually hosted on: http://tt-music-search.s3-website.us-east-2.amazonaws.com
+Actually hosted on: http://spotify-search.s3-website.us-east-2.amazonaws.com
 
 ---
 
@@ -95,7 +95,7 @@ $ yarn install
 
 Follow the official [Spotify: API tutorial](https://developer.spotify.com/web-api/tutorial) that shows how to create a application that accesses user-related data through the Spotify Web API.
 
-During the tutorial you need add any Redirect URIs that the Spotify Accounts service could call when authentication process completes. For ```tt-music-search``` in development you must add ```http://localhost:3000/login``` and ```http://<PRODUCTION_URL>/login``` for production environments.
+During the tutorial you need add any Redirect URIs that the Spotify Accounts service could call when authentication process completes. For ```spotify-search``` in development you must add ```http://localhost:3000/login``` and ```http://<PRODUCTION_URL>/login``` for production environments.
 
 After the tutorial you need to configure the .env file with the Spotify application's client ID.
 
@@ -176,6 +176,6 @@ Some parts of this project follow the style guide from [React Redux Universal Ho
 ## License
 
 This project is licensed under the terms of the **GNU GENERAL PUBLIC** license.
->You can check out the full license [here](https://github.com/jcarva/tt-music-search/blob/master/LICENSE)
+>You can check out the full license [here](https://github.com/jcarva/spotify-search/blob/master/LICENSE)
 
 ---

@@ -67,7 +67,7 @@ class Login extends React.Component<Props, void> {
   }
 
   /**
-   * Redirects the user to tt-music-search's Spotify authentication URL
+   * Redirects the user to spotify-search's Spotify authentication URL
    * @return {Void}
    */
   handleLogin = () => {
@@ -90,16 +90,16 @@ class Login extends React.Component<Props, void> {
       <div id='login-page' className='page'>
         <div className='content'>
           <img src={logo} className='logo' alt='logo' />
-          <h1 className='title'>Welcome to tt-music-search</h1>
+          <h1 className='title'>Welcome to spotify-search</h1>
           <p>This application exclusively uses spotify accounts as a way to access its features.</p>
           <div className='login-btn' onClick={this.handleLogin}>Login</div>
         </div>
         <div className='project-reference'>
           <a
             className='github-button'
-            href='https://github.com/jcarva/tt-music-search'
+            href='https://github.com/jcarva/spotify-search'
             data-size='large'
-            aria-label='Star jcarva/tt-music-search on GitHub'
+            aria-label='Star jcarva/spotify-search on GitHub'
           >
             Follow
           </a>

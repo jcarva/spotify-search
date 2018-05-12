@@ -8,6 +8,7 @@ import _ from 'lodash'
 import spotifyApi from 'services/spotify'
 import utils from 'services/utils'
 
+// Components
 import Artist from 'components/Artist/Artist.component'
 import AlbumsGrid from 'components/AlbumsGrid/AlbumsGrid.component'
 
